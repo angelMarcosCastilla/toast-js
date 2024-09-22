@@ -3,7 +3,16 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Toast</title>
+    <title>Toast - vanilla</title>
+    <meta
+      name="description"
+      content="permite mostrar mensajes de notificación en tu aplicación web, creado con javascript vanilla"
+    />
+    <meta
+      name="keywords"
+      content="toast, javascript, vanilla, notification,
+    mensaje de notificación"
+    />
     <link rel="stylesheet" href="./src/toast.css" />
     <style>
       body {
@@ -13,14 +22,39 @@
       }
       .container {
         text-align: center;
+        position: relative;
+        padding: 20vh 0;
+        width: 100%;
+        max-width: 1000px;
+        margin: 0 auto;
       }
+
+      .container::after{
+        position: absolute;
+        content: "";
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        background-image: linear-gradient(
+          to top,
+          transparent,
+          rgba(58, 48, 58, 0.062) 20%,
+          rgba(162, 162, 162, 0.164) 100%
+        );
+        mask-image: linear-gradient(90deg, #000000 2px, transparent 0),
+          linear-gradient(180deg, #000 2px, transparent 0);
+        -webkit-mask-size: 60px 0px;
+        mask-size: 60px 60px;
+        -webkit-mask-repeat: repeat;
+        mask-repeat: repeat;
+        -webkit-mask-position: 50%;
+        mask-position: 50%;
+      }
+
+      button,
       .github-btn {
-        display: block;
-        text-decoration: none;
-        background-color: black;
-        color: white;
-      }
-      button, .github-btn {
         margin: 5px;
         padding: 10px 15px;
         font-size: 14px;
@@ -40,17 +74,44 @@
         justify-content: flex-end;
         align-items: center;
         margin-bottom: 20px;
-        padding:10px  20px;
+        padding: 10px 20px;
         border: 1px solid var(--border);
+      }
+      .github-btn {
+        display: block;
+        text-decoration: none;
+        background-color: black;
+        color: white;
+        display: block;
+        border-radius: 8px;
+      }
+
+      .title-app {
+        font-size: 2rem;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .alert-message {
+        font-size: 0.8rem;
+        font-weight: bold;
+        color: gray;
       }
     </style>
   </head>
   <body>
     <header class="header">
-      <a href="" class="github-btn">Github</a>
+      <a
+        href="https://github.com/angelMarcosCastilla/toast-js"
+        class="github-btn"
+        >Github</a
+      >
     </header>
     <div class="container">
-      <h1>Toast - VanillaJS</h1>
+      <h1 class="title-app">
+        Toast - VanillaJS
+        <span class="alert-message">Se encuentra en Desarrollo</span>
+      </h1>
       <p>Mostrar mensajes de notificación En tu aplicación</p>
 
       <button data-variant="default">Default</button>
