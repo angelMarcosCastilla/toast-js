@@ -4,6 +4,7 @@ class Toast {
       position: "top-right",
       duration: 3000,
       maxToasts: 3,
+      closeButton: true,
       ...options,
     };
     this.container = this.createContainer();
@@ -28,8 +29,9 @@ class Toast {
   }
 
   createToast(message, type = "default") {
-    if (this.toasts.length >= this.options.maxToasts) {
+    if (this.toasts.length >= this.options.maxToasts ) {
       this.removeToast(this.toasts[0]);
+      this.toasts.shift();
     }
 
     const toast = document.createElement("div");
