@@ -28,10 +28,11 @@
 }
 
 .toast {
-  background-color: hsl(var(--background));
+  background-color: white;
   color: hsl(var(--foreground));
   border: 1px solid hsl(var(--border));
   padding: 12px 16px;
+
   border-radius: var(--radius);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
   margin-bottom: 8px;
