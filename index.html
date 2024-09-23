@@ -29,7 +29,7 @@
         margin: 0 auto;
       }
 
-      .container::after{
+      .container::after {
         position: absolute;
         content: "";
         top: 0;
@@ -97,6 +97,15 @@
         font-weight: bold;
         color: gray;
       }
+
+      h2 {
+        font-size: 1.2rem;
+        margin-bottom: 0.8rem;
+      }
+
+      .active-actions {
+        outline: 1px solid black;
+      }
     </style>
   </head>
   <body>
@@ -113,19 +122,33 @@
         <span class="alert-message">Se encuentra en Desarrollo</span>
       </h1>
       <p>Mostrar mensajes de notificación En tu aplicación</p>
-
-      <button data-variant="default">Default</button>
-      <button data-variant="success">Success</button>
-      <button data-variant="error">Error</button>
-      <button data-variant="info">Info</button>
-      <button data-variant="warning">Warning</button>
+      <div
+        style="
+          margin-top: 30px;
+          display: flex;
+          flex-direction: column;
+          gap: 2rem;
+        "
+      >
+        <div>
+          <h2>Posiciones</h2>
+          <button data-position="top-left">top-left</button>
+          <button data-position="top-center">bottom-center</button>
+          <button data-position="top-right">top-right</button>
+        </div>
+        <div>
+          <h2>Variantes</h2>
+          <button data-variant="default">Default</button>
+          <button data-variant="success">Success</button>
+          <button data-variant="error">Error</button>
+          <button data-variant="info">Info</button>
+          <button data-variant="warning">Warning</button>
+        </div>
+      </div>
     </div>
 
     <script src="./src/toast.js"></script>
     <script>
-      const toast = new Toast({ maxToasts: 3 });
-      const $$btns = document.querySelectorAll("button");
-
       const MESSAGES = {
         default: "This is a default toast message",
         success: "This is a success toast message",
@@ -133,13 +156,30 @@
         info: "This is an info toast message",
         warning: "This is a warning toast message",
       };
+      const $$btnVariants = document.querySelectorAll("button[data-variant]");
+      const toast = new Toast({ maxToasts: 3, position: "top-center" });
+      const $$btnPositions = document.querySelectorAll("button[data-position]");
+      $$btnPositions.forEach(($btn) => {
+        $btn.addEventListener("click", (e) => {
+          removeAtivePosition();
+          e.target.classList.add("active-actions");
+          toast.container.style.position = "fixed";
+          toast.container.dataset.position = $btn.dataset.position;
+        });
+      });
 
-      $$btns.forEach(($btn) => {
+      $$btnVariants.forEach(($btn) => {
         $btn.addEventListener("click", () => {
           const variant = $btn.dataset.variant;
           toast[variant](MESSAGES[variant]);
         });
       });
+
+      function removeAtivePosition() {
+        $$btnPositions.forEach(($btn) => {
+          $btn.classList.remove("active-actions");
+        });
+      }
     </script>
   </body>
 </html>
