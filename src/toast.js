@@ -2,14 +2,7 @@ class Toast {
   toastHeight = {};
   gap = 12;
 
-  #postionStyles = {
-    "top-right": "top: 16px; right: 16px;",
-    "top-left": "top: 16px; left: 16px;",
-    "bottom-right": "bottom: 16px; right: 16px;",
-    "bottom-left": "bottom: 16px; left: 16px;",
-    "top-center": "top: 16px; left: 50%; transform: translateX(-50%);",
-    "bottom-center": "bottom: 16px; left: 50%; transform: translateX(-50%);",
-  };
+  #positionsValidate = ["top-right", "top-left", "bottom-right",/*  "bottom-left", "top-center", "bottom-center" */];
   position = "top";
 
   constructor(options = {}) {
@@ -20,7 +13,7 @@ class Toast {
       ...options,
     };
 
-    if(!this.#postionStyles[this.options.position] ) {
+    if(!this.#positionsValidate.includes(this.options.position) ) {
       this.options.position = "top-right";
     }
 
@@ -38,11 +31,7 @@ class Toast {
     container.className = "toast-container";
     container.setAttribute("role", "alert");
     container.setAttribute("aria-live", "polite");
-    container.style.cssText = `
-      position: fixed;
-      z-index: 9999;
-      ${this.#postionStyles[this.options.position]}
-    `;
+    container.dataset.position = this.options.position;
     document.body.appendChild(container);
     return container;
   }

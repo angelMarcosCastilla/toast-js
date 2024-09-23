@@ -29,10 +29,43 @@
 }
 
 .toast-container {
+  position: fixed;
+  z-index: 9999;
   max-width: 420px;
   width: 100%;
-  position: fixed;
   transition: all 2s ease-in-out;
+}
+
+.toast-container[data-position="top-right"] {
+  right: 16px;
+  top: 16px;
+}
+
+.toast-container[data-position="top-left"] {
+  left: 16px;
+  top: 16px;
+}
+
+.toast-container[data-position="bottom-right"] {
+  right: 16px;
+  bottom: 16px;
+}
+
+.toast-container[data-position="bottom-left"] {
+  left: 16px;
+  bottom: 16px;
+}
+
+.toast-container[data-position="top-center"] {
+  left: 50%;
+  transform: translateX(-50%);
+  top: 16px;
+}
+
+.toast-container[data-position="bottom-center"] {
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 16px;
 }
 
 .toast {
