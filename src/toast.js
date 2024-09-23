@@ -77,15 +77,7 @@ class Toast {
 
     this.#reposition();
 
-    if (this.toasts.length > this.options.maxToasts) {
-      const lastIndexToHidden = this.toasts.length - this.options.maxToasts;
-      const $toastToHidden = this.toasts.slice(0, lastIndexToHidden);
-      $toastToHidden.forEach((toastId) => {
-        const $toast = document.querySelector(`[data-toast-id="${toastId}"]`);
-        $toast.style.opacity = 0;
-        $toast.style.pointerEvents = "none";
-      });
-    }
+    this.visbleMaxToasts();
 
     return toast;
   }
@@ -96,18 +88,9 @@ class Toast {
       const $toast = document.querySelector(`[data-toast-id="${toastId}"]`);
       $toast.style.opacity = 0;
       $toast.remove();
-
-      if (this.toasts.length > this.options.maxToasts) {
-        const lastIndexToHidden = this.toasts.length - this.options.maxToasts;
-        const idToastToVissible = this.toasts[lastIndexToHidden - 1];
-        const $toastToVissible = document.querySelector(
-          `[data-toast-id="${idToastToVissible}"]`
-        );
-        $toastToVissible.style.opacity = 1;
-        $toastToVissible.style.pointerEvents = "auto";
-      }
-      this.#reposition();
       this.toasts.splice(index, 1);
+      this.#reposition();
+      this.visbleMaxToasts();
     }
   }
 
@@ -185,5 +168,17 @@ class Toast {
     this.options.position = position;
     this.position = position.split("-")[0];
     this.#reposition();
+  }
+
+  visbleMaxToasts() {
+    if (this.toasts.length > this.options.maxToasts) {
+      let $$toasts = document.querySelectorAll(".toast");
+      $$toasts = [...$$toasts].reverse();
+      $$toasts.forEach(($toast, index) => {
+        const isVisible = index < this.options.maxToasts;
+        $toast.style.opacity = isVisible ? 1 : 0;
+        $toast.style.pointerEvents = isVisible ? "auto" : "none";
+      });
+    }
   }
 }
