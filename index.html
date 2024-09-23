@@ -132,7 +132,9 @@
       >
         <div>
           <h2>Posiciones</h2>
-          <button data-position="top-left">top-left</button>
+          <button data-position="top-left" class="active-actions">
+            top-left
+          </button>
           <button data-position="top-center">top-center</button>
           <button data-position="top-right">top-right</button>
           <button data-position="bottom-left">bottom-left</button>
@@ -160,7 +162,7 @@
         warning: "This is a warning toast message",
       };
       const $$btnVariants = document.querySelectorAll("button[data-variant]");
-      const toast = new Toast({ maxToasts: 3, position: "bottom-right" });
+      const toast = new Toast({ maxToasts: 3, position: "top-left" });
       const $$btnPositions = document.querySelectorAll("button[data-position]");
       $$btnPositions.forEach(($btn) => {
         $btn.addEventListener("click", (e) => {
