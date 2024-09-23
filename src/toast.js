@@ -2,18 +2,25 @@ class Toast {
   toastHeight = {};
   gap = 12;
 
-  #positionsValidate = ["top-right", "top-left", "bottom-right",/*  "bottom-left", "top-center", "bottom-center" */];
+  #positionsValidate = [
+    "top-right",
+    "top-left",
+    "bottom-right",
+    "bottom-left",
+    "top-center",
+    "bottom-center",
+  ];
   position = "top";
 
   constructor(options = {}) {
     this.options = {
-      duration: 30000,
+      duration: 3000,
       maxToasts: 3,
       closeButton: true,
       ...options,
     };
 
-    if(!this.#positionsValidate.includes(this.options.position) ) {
+    if (!this.#positionsValidate.includes(this.options.position)) {
       this.options.position = "top-right";
     }
 
@@ -42,6 +49,10 @@ class Toast {
     toast.dataset.variant = type;
     toast.dataset.toastId = currentToastId;
     toast.className = `toast`;
+    toast.style.setProperty(
+      "--translateY",
+      this.position === "top" ? "-200%" : "200%"
+    );
     toast.innerHTML = `
       <div class="toast-content">
         ${message}
@@ -59,7 +70,7 @@ class Toast {
       });
     }
 
-    this.container.prepend(toast);
+    this.container.appendChild(toast);
     this.toasts.push(currentToastId);
     this.#calculateHeight(toast);
     this.#autoClose(currentToastId);
@@ -138,20 +149,41 @@ class Toast {
   }
 
   #reposition() {
-    const toasts = document.querySelectorAll(".toast");
+    let toasts = document.querySelectorAll(".toast");
+    toasts = [...toasts].reverse();
     let height = 0;
+
+    if (this.position === "top") {
+      toasts.forEach(($toast, index) => {
+        if (index === 0) {
+          $toast.style.setProperty("--translateY", `0`);
+          $toast.style.opacity = 1;
+          return;
+        }
+
+        height += this.toastHeight[$toast.dataset.toastId];
+
+        const gap = this.gap * index;
+        const translateY = height + gap;
+        $toast.style.setProperty("--translateY", `${translateY}px`);
+      });
+      return;
+    }
+
     toasts.forEach(($toast, index) => {
       if (index === 0) {
-        $toast.style.transform = `translateY(0)`;
         $toast.style.opacity = 1;
-        return;
       }
-
-      height += this.toastHeight[$toast.dataset.toastId];
-
-      const gap = this.gap * index;
-      const translateY = height + gap;
-      $toast.style.transform = `translateY(${translateY}px)`;
+      height +=
+        this.toastHeight[$toast.dataset.toastId] + (index === 0 ? 0 : this.gap);
+      $toast.style.setProperty("--translateY", `-${height}px`);
     });
+  }
+
+  setPosition(position) {
+    this.container.dataset.position = position;
+    this.options.position = position;
+    this.position = position.split("-")[0];
+    this.#reposition();
   }
 }
