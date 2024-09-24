@@ -106,6 +106,37 @@
       .active-actions {
         outline: 1px solid black;
       }
+
+      .code-container {
+        background-color: white;
+        max-width: 500px;
+        margin: 0 auto;
+        width: 90%;
+        padding: 0;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05),
+        0 4px 20px rgba(203, 203, 203, 0.09);
+        margin-top: 2rem;
+        border-radius: 20px;
+        & code {
+          display: flex;
+          flex-direction: column;
+          gap: 1rem;
+          font-size: 14px;
+          text-align: left;
+          background: white;
+          padding: 20px;
+          & p{
+            margin: 0;
+          }
+        }
+      }
+
+      .code-options{
+        color: violet;
+      }
+      .code-message{
+        color: green;
+      }
     </style>
   </head>
   <body>
@@ -122,6 +153,15 @@
         <span class="alert-message">Se encuentra en Desarrollo</span>
       </h1>
       <p>Mostrar mensajes de notificación En tu aplicación</p>
+
+      <div class="code-container">
+        <pre>
+          <code>
+            <p>const toast = new Toast();</p>
+            <p>toast.<span class="code-options">success</span>(<span class="code-message">"This is a success toast message"</span>);</p>
+          </code>
+        </pre>
+      </div>
       <div
         style="
           margin-top: 30px;
