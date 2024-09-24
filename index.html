@@ -23,7 +23,6 @@
       .container {
         text-align: center;
         position: relative;
-        padding: 20vh 0;
         width: 100%;
         max-width: 1000px;
         margin: 0 auto;
@@ -108,6 +107,7 @@
       }
 
       .code-container {
+        position: relative;
         background-color: white;
         max-width: 500px;
         margin: 0 auto;
@@ -140,6 +140,16 @@
       .code-new {
         color: rgb(210, 39, 173);
       }
+      .copy-btn {
+        position: absolute;
+        top: 0;
+        right: 0;
+        padding: 10px;
+        cursor: pointer;
+        border: none;
+        border-radius: var(--radius);
+        transition: opacity 0.2s ease;
+      }
     </style>
   </head>
   <body>
@@ -158,10 +168,11 @@
       <p>Mostrar mensajes de notificación En tu aplicación</p>
 
       <div class="code-container">
+        <button class="copy-btn" id="copy-btn">Copiar</button>
         <pre>
           <code>
-            <p>const toast = <span class="code-new">new</span> Toast();</p>
-            <p>toast.<span class="code-options">success</span>(<span class="code-message">"This is a success toast message"</span>);</p>
+            <p>const toast = <span class="code-new">new</span> Toast( {position:<span class="code-message" id="position">"top-left"</span> } );</p>
+            <p>toast.<span class="code-options" id="optionToast">success</span>(<span class="code-message" id="messageToast">"This is a success toast message"</span>);</p>
           </code>
         </pre>
       </div>
@@ -207,11 +218,17 @@
       const $$btnVariants = document.querySelectorAll("button[data-variant]");
       const toast = new Toast({ maxToasts: 3, position: "top-left" });
       const $$btnPositions = document.querySelectorAll("button[data-position]");
+      const $optionToast = document.querySelector("#optionToast");
+      const $position = document.querySelector("#position");
+      const $messageToast = document.querySelector("#messageToast");
+      const btnCopy = document.querySelector("#copy-btn");
+
       $$btnPositions.forEach(($btn) => {
         $btn.addEventListener("click", (e) => {
           removeAtivePosition();
           e.target.classList.add("active-actions");
           toast.container.style.position = "fixed";
+          $position.innerHTML = `"${$btn.dataset.position}"`;
           toast.setPosition($btn.dataset.position);
         });
       });
@@ -219,6 +236,8 @@
       $$btnVariants.forEach(($btn) => {
         $btn.addEventListener("click", () => {
           const variant = $btn.dataset.variant;
+          optionToast.innerHTML = variant;
+          messageToast.innerHTML = `"${MESSAGES[variant]}"`;
           toast[variant](MESSAGES[variant]);
         });
       });
@@ -228,6 +247,21 @@
           $btn.classList.remove("active-actions");
         });
       }
+
+      btnCopy.addEventListener("click", () => {
+        btnCopy.textContent = "Copiado!";
+        btnCopy.disabled = true;
+        navigator.clipboard.writeText(
+          `
+          const toast = new Toast( {position:${$position.innerHTML} } );
+          toast.${$optionToast.innerHTML}(${$messageToast.innerHTML});
+          `
+        );
+        setTimeout(() => {
+          btnCopy.disabled = false;
+          btnCopy.textContent = "Copiar";
+        }, 500);
+      });
     </script>
   </body>
 </html>
