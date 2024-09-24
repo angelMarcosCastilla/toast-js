@@ -114,7 +114,7 @@
         width: 90%;
         padding: 0;
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05),
-        0 4px 20px rgba(203, 203, 203, 0.09);
+          0 4px 20px rgba(203, 203, 203, 0.09);
         margin-top: 2rem;
         border-radius: 20px;
         & code {
@@ -125,17 +125,20 @@
           text-align: left;
           background: white;
           padding: 20px;
-          & p{
+          & p {
             margin: 0;
           }
         }
       }
 
-      .code-options{
-        color: violet;
+      .code-options {
+        color: rgb(40, 59, 199);
       }
-      .code-message{
+      .code-message {
         color: green;
+      }
+      .code-new {
+        color: rgb(210, 39, 173);
       }
     </style>
   </head>
@@ -157,7 +160,7 @@
       <div class="code-container">
         <pre>
           <code>
-            <p>const toast = new Toast();</p>
+            <p>const toast = <span class="code-new">new</span> Toast();</p>
             <p>toast.<span class="code-options">success</span>(<span class="code-message">"This is a success toast message"</span>);</p>
           </code>
         </pre>
