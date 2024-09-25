@@ -87,10 +87,13 @@ class Toast {
     if (index !== -1) {
       const $toast = document.querySelector(`[data-toast-id="${toastId}"]`);
       $toast.style.opacity = 0;
-      $toast.remove();
+      $toast.style.scale = 0.5;
       this.toasts.splice(index, 1);
-      this.#reposition();
-      this.visbleMaxToasts();
+      setTimeout(() => {
+        $toast.remove();
+        this.#reposition();
+        this.visbleMaxToasts();
+      }, 50);
     }
   }
 

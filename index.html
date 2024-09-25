@@ -21,14 +21,17 @@
         margin: 0;
       }
       .container {
-        text-align: center;
-        position: relative;
         width: 100%;
         max-width: 1000px;
         margin: 0 auto;
       }
 
-      .container::after {
+      .hero {
+        text-align: center;
+        position: relative;
+      }
+
+      .hero::after {
         position: absolute;
         content: "";
         top: 0;
@@ -160,7 +163,7 @@
         >Github</a
       >
     </header>
-    <div class="container">
+    <div class="container hero">
       <h1 class="title-app">
         Toast - VanillaJS
         <span class="alert-message">Se encuentra en Desarrollo</span>
@@ -204,6 +207,10 @@
           <button data-variant="warning">Warning</button>
         </div>
       </div>
+    </div>
+
+    <div>
+      
     </div>
 
     <script src="./src/toast.js"></script>
