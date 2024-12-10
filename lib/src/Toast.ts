@@ -10,6 +10,15 @@ const POSITIONS = {
   "bottom-center": "bottom-center",
 };
 
+const EXIT_AMIMATION: Record<Position, string> = {
+  "top-left": "exit-left",
+  "top-right": "exit-right",
+  "bottom-left": "exit-left",
+  "bottom-right": "exit-right",
+  "top-center": "exit-top-center",
+  "bottom-center": "exit-bottom-center",
+};
+
 type Position = keyof typeof POSITIONS;
 
 type Config = {
@@ -30,7 +39,7 @@ export class Toast {
   position: Position = POSITIONS["bottom-center"] as Position;
 
   constructor(config: Config) {
-    if(config.position) {
+    if (config.position) {
       this.position = config.position;
     }
     this.$container = this.createContainer();
@@ -79,18 +88,20 @@ export class Toast {
     this.$container?.appendChild($toast);
 
     setTimeout(() => {
-      this.autoClose($toast)
+      this.autoClose($toast);
     }, 3000);
   }
 
   autoClose($toast: HTMLDivElement) {
-    $toast.classList.add("exit-left");
+    const currentPosition = $toast.getAttribute("data-position");
+
+    const animationExit = EXIT_AMIMATION[currentPosition as Position];
+    console.log(animationExit);
+    $toast.classList.add(animationExit);
 
     $toast.addEventListener("animationend", () => {
       $toast?.remove();
     });
-
-    
   }
   success(options: Props) {
     this.renderToast({

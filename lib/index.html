@@ -27,11 +27,13 @@
       }
 
       .an-toast-container[data-position="top-right"] {
+        flex-direction: column-reverse;
         right: 16px;
         top: 16px;
       }
 
       .an-toast-container[data-position="top-left"] {
+        flex-direction: column-reverse;
         left: 16px;
         top: 16px;
       }
@@ -47,6 +49,7 @@
       }
 
       .an-toast-container[data-position="top-center"] {
+        flex-direction: column-reverse;
         left: 50%;
         transform: translateX(-50%);
         top: 16px;
@@ -107,9 +110,22 @@
         animation: slide-bottom 0.5s ease-in-out;
       }
 
+      .an-toast-card:where(
+          [data-position="top-left"],
+          [data-position="top-center"],
+          [data-position="top-right"]
+        ) {
+        animation: slide-top 0.2s ease-in-out;
+      }
+
       .exit-left {
         animation: slide-left 0.2s ease;
       }
+
+      .exit-right {
+        animation: slide-right 0.2s ease;
+      }
+
       @keyframes slide-bottom {
         0% {
           opacity: 0;
@@ -126,17 +142,73 @@
           opacity: 1;
           transform: translateX(0);
         }
-        90% {
+        100% {
           opacity: 0;
 
           transform: translateX(-100%);
+        }
+      }
+
+      @keyframes slide-right {
+        0% {
+          opacity: 1;
+          transform: translateX(0);
+        }
+        100% {
+          opacity: 0;
+          transform: translateX(100%);
+        }
+      }
+
+      @keyframes slide-top {
+        0% {
+          opacity: 0;
+          transform: translateY(-100%);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .exit-top-center {
+        animation: slide-top-exit  0.4s ease;
+      }
+
+      .exit-bottom-center {
+        animation: slide-bottom-exit 0.4s ease;
+      }
+
+      @keyframes slide-bottom-exit {
+        0% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+        100% {
+          opacity: 0;
+          transform: translateY(90%);
+        }
+      }
+
+      
+      @keyframes slide-top-exit {
+        0% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+        100% {
+          opacity: 0;
+          transform: translateY(-90%);
         }
       }
     </style>
   </head>
   <body>
     <div id="app">holaa</div>
-    <button>hola</button>
+    <button class="success">success</button>
+    <button class="warning">warning</button>
+    <button class="error">error</button>
+    <button class="info">info</button>
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>
