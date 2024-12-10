@@ -1,3 +1,4 @@
+import "./style.css";
 import { Toast } from "./Toast";
 
 const toast = new Toast({

@@ -1,38 +1,6 @@
-import { Error, Info, Success, Warning } from "./icons";
-
-const prefix = "an";
-const POSITIONS = {
-  "top-left": "top-left",
-  "top-right": "top-right",
-  "bottom-left": "bottom-left",
-  "bottom-right": "bottom-right",
-  "top-center": "top-center",
-  "bottom-center": "bottom-center",
-};
-
-const EXIT_AMIMATION: Record<Position, string> = {
-  "top-left": "exit-left",
-  "top-right": "exit-right",
-  "bottom-left": "exit-left",
-  "bottom-right": "exit-right",
-  "top-center": "exit-top-center",
-  "bottom-center": "exit-bottom-center",
-};
-
-type Position = keyof typeof POSITIONS;
-
-type Config = {
-  position?: Position;
-};
-type Props = {
-  title: string;
-  description?: string;
-};
-
-interface IRenderToast extends Props {
-  icon: string;
-  type: "success" | "warning" | "error" | "info";
-}
+import { EXIT_AMIMATION, POSITIONS, prefix } from "./constants";
+import { closeIcon, Error, Info, Success, Warning } from "./icons";
+import { Config, IRenderToast, Position, Props } from "./type";
 
 export class Toast {
   $container: HTMLDivElement | null = null;
@@ -64,39 +32,54 @@ export class Toast {
     const $toast = document.createElement("div");
     const $title = document.createElement("p");
     const $containerInfo = document.createElement("div");
+    const $btnClose = document.createElement("button");
 
+    $btnClose.innerHTML = closeIcon;
+    $btnClose.className = "close-btn";
     $toast.className = `${prefix}-toast-card`;
     $toast.setAttribute("data-position", this.position);
     $toast.setAttribute("data-variant", option.type);
     $title.textContent = option.title;
     $title.className = `title`;
     $containerInfo.appendChild($title);
-
+    $containerInfo.classList.add("container-info");
+    
     if (option.description) {
       const $description = document.createElement("p");
       $description.textContent = option.description;
       $description.className = `description`;
       $containerInfo.appendChild($description);
     }
+    
     if (option.icon) {
       const $icon = document.createElement("div");
       $icon.className = `${prefix}-toast-icon`;
       $icon.innerHTML = option.icon;
       $toast.appendChild($icon);
     }
+    
     $toast.appendChild($containerInfo);
+    $toast.appendChild($btnClose);
+    
     this.$container?.appendChild($toast);
-
+    
+    this.handleClose($toast)
     setTimeout(() => {
       this.autoClose($toast);
     }, 3000);
+  }
+
+  handleClose(toast: HTMLDivElement) {
+    const $buttonClose = toast.querySelector( `.close-btn`);
+    $buttonClose?.addEventListener("click", () => {
+      this.autoClose(toast);
+    });
   }
 
   autoClose($toast: HTMLDivElement) {
     const currentPosition = $toast.getAttribute("data-position");
 
     const animationExit = EXIT_AMIMATION[currentPosition as Position];
-    console.log(animationExit);
     $toast.classList.add(animationExit);
 
     $toast.addEventListener("animationend", () => {
