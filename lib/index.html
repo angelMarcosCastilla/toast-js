@@ -1,13 +1,142 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vite + TS</title>
+    <style>
+      .an-toast-container {
+        position: fixed;
+        z-index: 9999;
+        width: 100%;
+        max-width: 420px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+
+        & * {
+          font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+            Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+            sans-serif;
+          box-sizing: border-box;
+          padding: 0;
+          margin: 0;
+        }
+      }
+
+      .an-toast-container[data-position="top-right"] {
+        right: 16px;
+        top: 16px;
+      }
+
+      .an-toast-container[data-position="top-left"] {
+        left: 16px;
+        top: 16px;
+      }
+
+      .an-toast-container[data-position="bottom-right"] {
+        right: 16px;
+        bottom: 16px;
+      }
+
+      .an-toast-container[data-position="bottom-left"] {
+        left: 16px;
+        bottom: 16px;
+      }
+
+      .an-toast-container[data-position="top-center"] {
+        left: 50%;
+        transform: translateX(-50%);
+        top: 16px;
+      }
+      .an-toast-container[data-position="bottom-center"] {
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: 16px;
+      }
+      .an-toast-container[data-position="top-center"] {
+        left: 50%;
+        transform: translateX(-50%);
+        top: 16px;
+      }
+
+      .an-toast-card {
+        max-width: 350px;
+        padding: 8px 12px;
+        border-radius: 4px;
+        border: 1px solid #ccc;
+        display: flex;
+        gap: 8px;
+        & .title {
+          font-size: 14px;
+          font-weight: semibold;
+          color: black;
+        }
+        & .description {
+          color: #666;
+          font-size: 13px;
+        }
+        &[data-variant="success"] {
+          color: #3ab20b;
+        }
+        &[data-variant="warning"] {
+          color: #d3a519;
+        }
+        &[data-variant="error"] {
+          color: #c50215;
+        }
+        &[data-variant="info"] {
+          color: #116e90;
+        }
+        & .an-toast-icon {
+          width: 18px;
+          height: 18px;
+          & svg {
+            width: 100%;
+            height: 100%;
+          }
+        }
+      }
+      .an-toast-card:where(
+          [data-position="bottom-left"],
+          [data-position="bottom-center"],
+          [data-position="bottom-right"]
+        ) {
+        animation: slide-bottom 0.5s ease-in-out;
+      }
+
+      .exit-left {
+        animation: slide-left 0.2s ease;
+      }
+      @keyframes slide-bottom {
+        0% {
+          opacity: 0;
+          transform: translateY(100%);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes slide-left {
+        0% {
+          opacity: 1;
+          transform: translateX(0);
+        }
+        90% {
+          opacity: 0;
+
+          transform: translateX(-100%);
+        }
+      }
+    </style>
   </head>
   <body>
-    <div id="app"></div>
+    <div id="app">holaa</div>
+    <button>hola</button>
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>

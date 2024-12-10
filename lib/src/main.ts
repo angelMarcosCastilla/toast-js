@@ -1,24 +1,24 @@
-import './style.css'
-import typescriptLogo from './typescript.svg'
-import viteLogo from '/vite.svg'
-import { setupCounter } from './counter.ts'
+import { Toast } from "./Toast";
 
-document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
-  <div>
-    <a href="https://vite.dev" target="_blank">
-      <img src="${viteLogo}" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://www.typescriptlang.org/" target="_blank">
-      <img src="${typescriptLogo}" class="logo vanilla" alt="TypeScript logo" />
-    </a>
-    <h1>Vite + TypeScript</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite and TypeScript logos to learn more
-    </p>
-  </div>
-`
+const toast = new Toast({
+  position: "bottom-left",
+});
 
-setupCounter(document.querySelector<HTMLButtonElement>('#counter')!)
+document.querySelector("button")?.addEventListener("click", () => {
+  toast.success({
+    title: "Success",
+    description: "Este es un mensaje de éxito",
+  });
+  toast.warning({
+    title: "Warning",
+    description: "Este es un mensaje de éxito",
+  });
+  toast.error({
+    title: "Error",
+    description: "Este es un mensaje de éxito",
+  });
+  toast.info({
+    title: "Info",
+    description: "Este es un mensaje de éxito",
+  });
+});
