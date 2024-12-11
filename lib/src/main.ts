@@ -3,13 +3,13 @@ import { Toast } from "./Toast";
 
 const toast = new Toast({
   position: "bottom-center",
-  maxShow: 4
+  maxShow: 4,
+  time: 5000
 });
 
 document.querySelector(".success")?.addEventListener("click", () => {
   toast.success({
     title: "Success",
-    description: "Este es un mensaje de éxito",
   });
 });
 
@@ -30,6 +30,10 @@ document.querySelector(".error")?.addEventListener("click", () => {
 document.querySelector(".info")?.addEventListener("click", () => {
   toast.info({
     title: "Info",
+    description: "Este es un mensaje de éxito",
+  });
+  toast.default({
+    title: "Default",
     description: "Este es un mensaje de éxito",
   });
 });

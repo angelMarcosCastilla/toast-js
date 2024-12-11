@@ -6,11 +6,13 @@ export class Toast {
   $container: HTMLDivElement | null = null;
   position: Position = POSITIONS["bottom-center"] as Position;
   maxShow = 3;
+  time = 3000;
   constructor(config: Config) {
     if (config.position) {
       this.position = config.position;
     }
     this.maxShow = config.maxShow || 3;
+    this.time = config.time || 3000;
     this.$container = this.createContainer();
   }
 
@@ -73,7 +75,7 @@ export class Toast {
     this.handleClose($toast);
     setTimeout(() => {
       this.autoClose($toast);
-    }, 3000);
+    }, this.time);
   }
 
   handleClose(toast: HTMLDivElement) {
@@ -120,6 +122,13 @@ export class Toast {
       ...options,
       icon: Warning,
       type: "warning",
+    });
+  }
+
+  default(options: Props) {
+    this.renderToast({
+      ...options,
+      type: "default",
     });
   }
 }

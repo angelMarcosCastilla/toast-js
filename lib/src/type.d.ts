@@ -5,6 +5,7 @@ export type Position = keyof typeof POSITIONS;
 export type Config = {
   position?: Position;
   maxShow?: number;
+  time?: number;
 };
 export type Props = {
   title: string;
@@ -12,6 +13,6 @@ export type Props = {
 };
 
 export interface IRenderToast extends Props {
-  icon: string;
-  type: "success" | "warning" | "error" | "info";
+  icon?: string;
+  type: "success" | "warning" | "error" | "info" | "default";
 }
