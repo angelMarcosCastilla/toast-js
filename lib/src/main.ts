@@ -3,6 +3,7 @@ import { Toast } from "./Toast";
 
 const toast = new Toast({
   position: "bottom-center",
+  maxShow: 4
 });
 
 document.querySelector(".success")?.addEventListener("click", () => {

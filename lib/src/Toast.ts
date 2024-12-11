@@ -5,11 +5,12 @@ import { Config, IRenderToast, Position, Props } from "./type";
 export class Toast {
   $container: HTMLDivElement | null = null;
   position: Position = POSITIONS["bottom-center"] as Position;
-
+  maxShow = 3;
   constructor(config: Config) {
     if (config.position) {
       this.position = config.position;
     }
+    this.maxShow = config.maxShow || 3;
     this.$container = this.createContainer();
   }
 
@@ -43,34 +44,40 @@ export class Toast {
     $title.className = `title`;
     $containerInfo.appendChild($title);
     $containerInfo.classList.add("container-info");
-    
+
     if (option.description) {
       const $description = document.createElement("p");
       $description.textContent = option.description;
       $description.className = `description`;
       $containerInfo.appendChild($description);
     }
-    
+
     if (option.icon) {
       const $icon = document.createElement("div");
       $icon.className = `${prefix}-toast-icon`;
       $icon.innerHTML = option.icon;
       $toast.appendChild($icon);
     }
-    
+
     $toast.appendChild($containerInfo);
     $toast.appendChild($btnClose);
-    
+
     this.$container?.appendChild($toast);
+
+    const countCard = this.$container?.children.length || 0
     
-    this.handleClose($toast)
+    if (countCard > this.maxShow) {
+      this.$container?.children[0].remove();
+    }
+
+    this.handleClose($toast);
     setTimeout(() => {
       this.autoClose($toast);
     }, 3000);
   }
 
   handleClose(toast: HTMLDivElement) {
-    const $buttonClose = toast.querySelector( `.close-btn`);
+    const $buttonClose = toast.querySelector(`.close-btn`);
     $buttonClose?.addEventListener("click", () => {
       this.autoClose(toast);
     });

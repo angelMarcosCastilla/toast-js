@@ -4,6 +4,7 @@ export type Position = keyof typeof POSITIONS;
 
 export type Config = {
   position?: Position;
+  maxShow?: number;
 };
 export type Props = {
   title: string;
