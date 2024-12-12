@@ -1,8 +1,9 @@
+import "./style.css"
 import { EXIT_AMIMATION, POSITIONS, prefix } from "./constants";
 import { closeIcon, Error, Info, Success, Warning } from "./icons";
-import { Config, IRenderToast, Position, Props } from "./type";
+import { Config, IRenderToast, IToast, Position, Props } from "./type";
 
-export class Toast {
+export class Toast implements IToast {
   $container: HTMLDivElement | null = null;
   position: Position = POSITIONS["bottom-center"] as Position;
   maxShow = 3;

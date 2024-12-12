@@ -16,3 +16,10 @@ export interface IRenderToast extends Props {
   icon?: string;
   type: "success" | "warning" | "error" | "info" | "default";
 }
+
+export interface IToast {
+  error(options: Props): void;
+  info(options: Props): void;
+  warning(options: Props): void;
+  default(options: Props): void;
+}
