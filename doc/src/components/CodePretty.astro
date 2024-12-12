@@ -1,0 +1,15 @@
+---
+import { Code } from "astro:components";
+interface Props {
+  code: string;
+  lang?: BundleLang;
+}
+const { code, lang } = Astro.props;
+---
+
+<div class="relative [&_pre]:px-5 [&_pre]:py-3 [&_pre]:rounded-md">
+  <Code code={code} lang={lang} theme="github-dark-high-contrast" />
+  <button class="absolute top-2 right-2 text-gray-400 hover:text-gray-600"
+    >Copiar</button
+  >
+</div>
