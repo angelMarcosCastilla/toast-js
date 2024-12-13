@@ -7,6 +7,7 @@ export default defineConfig((options: Options) => ({
   target: 'esnext',
   sourcemap: true,
   dts: true,
+  globalName:"Toast",
   format: ['esm', 'cjs', 'iife'],
   injectStyle: true,
   tsconfig: 'tsconfig.json',
