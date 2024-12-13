@@ -1,4 +1,13 @@
 .an-toast-container {
+  --border: 240 5.9% 90%;
+  --foreground: 240 10% 3.9%;
+  --secondary-foreground: 240 3.8% 46.1%;
+  --shadow: 240 3.8% 46.1%;
+  --info: 196, 77%, 38%;
+  --success: 103, 83%, 45%;
+  --warning: 31, 95%, 57%;
+  --error: 354, 87%, 49%;
+  --background: 0, 0%, 100%;
   position: fixed;
   z-index: 9999;
   width: 100%;
@@ -7,7 +16,6 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
-
   & * {
     font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
       Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
@@ -60,38 +68,41 @@
 }
 
 .an-toast-card {
-  max-width: 350px;
-  padding: 8px 12px;
-  border-radius: 4px;
-  border: 1px solid #ccc;
+  max-width: 100%;
+  min-width: 300px;
+  padding: 12px 16px;
+  border-radius: 8px;
+  border: 1px solid hsl(var(--border));
   display: flex;
-  gap: 8px;
-
+  gap: 10px;
+  color: var(--variant-color);
+  background-color: hsl(var(--background));
+  box-shadow: 0 2px 6px hsla(var(--shadow) / 0.1);
   & .title {
     font-size: 14px;
-    font-weight: semibold;
-    color: black;
+    font-weight: 500;
+    color: hsl(var(--foreground));
   }
 
   & .description {
-    color: #666;
+    color: hsl(var(--secondary-foreground));
     font-size: 13px;
   }
 
   &[data-variant="success"] {
-    color: #3ab20b;
+    --variant-color: hsl(var(--success));
   }
 
   &[data-variant="warning"] {
-    color: #d3a519;
+    --variant-color: hsl(var(--warning));
   }
 
   &[data-variant="error"] {
-    color: #c50215;
+    --variant-color: hsl(var(--error));
   }
 
   &[data-variant="info"] {
-    color: #116e90;
+    --variant-color: hsl(var(--info));
   }
 
   & .container-info {
@@ -105,51 +116,52 @@
     padding: 0;
     margin: 0;
     outline: none;
-    color: gray;
+    color: hsl(var(--secondary-foreground));
     width: 24px;
     height: 24px;
     padding: 4px;
     border-radius: 3px;
 
     & svg {
-      width: 100%;
-      height: 100%;
+      width: 14px;
+      height: 14px;
     }
 
     &:hover {
-      background-color: rgb(0, 0, 0, 0.05);
+      background-color: hsla(var(--secondary-foreground) / 0.1);
     }
   }
 
   & .an-toast-icon {
-    width: 18px;
-    height: 18px;
-
     & svg {
-      width: 100%;
-      height: 100%;
+      width: 16px;
+      height: 16px;
     }
   }
 }
 
-.an-toast-card:where([data-position="bottom-left"],
-  [data-position="bottom-center"],
-  [data-position="bottom-right"]) {
-  animation: slide-bottom 0.2s ease-in-out;
+.an-toast-card:where(
+    [data-position="bottom-left"],
+    [data-position="bottom-center"],
+    [data-position="bottom-right"]
+  ) {
+  animation: slide-bottom 0.4s ease-in-out;
 }
 
-.an-toast-card:where([data-position="top-left"],
-  [data-position="top-center"],
-  [data-position="top-right"]) {
-  animation: slide-top 0.2s ease-in-out;
+.an-toast-card:where(
+    [data-position="top-left"],
+    [data-position="top-center"],
+    [data-position="top-right"]
+  ) {
+  animation: slide-top 0.4s ease-in-out;
 }
 
 .exit-left {
-  animation: slide-left 0.2s ease;
+  animation: slide-left 0.3s ease;
 }
 
 .exit-right {
-  animation: slide-right 0.2s ease;
+  animation: slide-right 0.3s ease;
 }
 
 @keyframes slide-bottom {
@@ -202,11 +214,11 @@
 }
 
 .exit-top-center {
-  animation: slide-top-exit 0.2s ease;
+  animation: slide-top-exit 0.3s ease;
 }
 
 .exit-bottom-center {
-  animation: slide-bottom-exit 0.2s ease;
+  animation: slide-bottom-exit 0.3s ease;
 }
 
 @keyframes slide-bottom-exit {
@@ -220,7 +232,6 @@
     transform: translateY(90%);
   }
 }
-
 
 @keyframes slide-top-exit {
   0% {
