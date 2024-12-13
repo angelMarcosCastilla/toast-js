@@ -1,0 +1,31 @@
+---
+import { cn } from "@/lib/utils";
+
+const routes = [
+  { name: "Instalación", href: "/doc/getting-started" },
+  { name: "Configuración", href: "/doc/config" },
+  { name: "variantes", href: "/doc/variant" },
+];
+
+const pathName = Astro.url.pathname;
+---
+
+<nav>
+  <ul class="flex flex-col gap-y-1 pr-2">
+    {
+      routes.map((route) => (
+        <li>
+          <a
+            class={cn(
+              "px-5 py-2 text-secondary-foreground block rounded ",
+              pathName.includes(route.href) ? "font-bold bg-accent": "hover:bg-muted/50"
+            )}
+            href={route.href}
+          >
+            {route.name}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</nav>

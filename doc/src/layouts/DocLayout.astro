@@ -1,0 +1,35 @@
+---
+import Sidebar from "@/components/Sidebar.astro";
+import Layout from "./Layout.astro";
+import { buttonVariants } from "@/components/ui/button";
+---
+
+<Layout>
+  <header class="sticky top-0 z-10">
+    <nav class="py-3 bg-white/80 backdrop-blur-lg">
+      <div class="max-w-[1200px] mx-auto px-4 flex items-center justify-between">
+        <a href="/" class="text-2xl font-bold">Toast</a>
+        <div>
+          <a
+            href="https://github.com/angelMarcosCastilla/toast-js"
+            target="_blank"
+            rel="noopener noreferrer"
+            class={buttonVariants({ variant: "outline" })}
+          >
+            GitHub
+          </a>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <main class="flex max-w-[1200px] mx-auto">
+    <div
+      class="w-64 py-4 border-r border-input h-[calc(100vh-56px)] sticky top-[56px]"
+    >
+      <Sidebar />
+    </div>
+    <div class="w-full pb-4">
+      <slot />
+    </div>
+  </main>
+</Layout>

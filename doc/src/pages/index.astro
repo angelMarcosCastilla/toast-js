@@ -2,6 +2,7 @@
 import CodePretty from "@/components/CodePretty.astro";
 import Layout from "../layouts/Layout.astro";
 import { Button, buttonVariants } from "@/components/ui/button";
+import { VERSION } from "@/constants";
 ---
 
 <Layout>
@@ -11,7 +12,7 @@ import { Button, buttonVariants } from "@/components/ui/button";
         <div
           class="inline-block px-3 py-1 text-sm font-semibold bg-blue-100 text-blue-800 rounded-full"
         >
-          v0.0.5 Beta
+          v{VERSION}
         </div>
         <h1 class="text-5xl font-bold tracking-tight sm:text-6xl">Toast</h1>
         <p class="mx-auto max-w-2xl text-xl text-gray-600">
@@ -19,7 +20,7 @@ import { Button, buttonVariants } from "@/components/ui/button";
           y elegantes en tu aplicación.
         </p>
         <div class="flex items-center justify-center gap-4 pt-4">
-          <a href="#" class={buttonVariants()}> Ver documentation </a>
+          <a href="/doc/getting-started" class={buttonVariants()}> Ver documentation </a>
           <a
             href="https://github.com/angelMarcosCastilla/toast-js"
             target="_blank"
@@ -62,8 +63,8 @@ import { Button, buttonVariants } from "@/components/ui/button";
     import { Toast } from "an-toastjs";
     const toast = new Toast({
       position: "top-left",
-      maxShow: 4,
-      time: 6000,
+      maxShow: 2,
+      time: 4000,
     });
 
     const $default = document.querySelector("#default") as HTMLButtonElement;
