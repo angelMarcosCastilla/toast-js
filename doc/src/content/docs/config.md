@@ -5,7 +5,7 @@ description: Positions
 
 ## Configuración
 
-1. Para configurar la librería, se debe realizar al momento instanciarla la clase.
+1. Para configurar la librería, se debe realizar al momento de instanciar la clase Toast.
 
 ```js
 const toast = new Toast({

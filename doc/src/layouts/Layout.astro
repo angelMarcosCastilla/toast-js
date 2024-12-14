@@ -1,8 +1,12 @@
 ---
-import '@/styles/global.css'
+interface Props {
+  title: string;
+}
+import "@/styles/global.css";
 
-import { ClientRouter } from 'astro:transitions';
+const { title = "✅ Toast JS" } = Astro.props;
 ---
+
 <!doctype html>
 <html lang="es">
   <head>
@@ -10,10 +14,9 @@ import { ClientRouter } from 'astro:transitions';
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
-    <title>toast - js</title>
-    <ClientRouter />
+    <title>{title}</title>
   </head>
-  <body class="h-auto min-h-screen" >
+  <body class="h-auto min-h-screen">
     <slot />
   </body>
 </html>
