@@ -6,7 +6,7 @@ import { MenuIcon } from "lucide-react";
 ---
 
 <Layout>
-  <header class="sticky top-0 z-10">
+  <header class="sticky top-0 z-20">
     <nav class="py-3 bg-white/80 backdrop-blur-lg">
       <div
         class="max-w-[1200px] mx-auto px-4 flex items-center justify-between"
@@ -33,7 +33,7 @@ import { MenuIcon } from "lucide-react";
   <main class="flex max-w-[1200px] mx-auto px-4">
     <div
       id="sidebar"
-      class=" hidden md:block fixed w-full pt-[80px] bg-background top-0 h-full border-r border-input md:w-64 md:h-[calc(100vh-120px)] md:sticky md:top-[60px] md:py-4"
+      class=" hidden z-10 md:block fixed w-full pt-[80px] bg-background top-0 h-full border-r border-input md:w-64 md:h-[calc(100vh-120px)] md:sticky md:top-[60px] md:py-4"
     >
       <Sidebar />
     </div>
