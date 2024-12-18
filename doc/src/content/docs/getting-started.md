@@ -33,7 +33,7 @@ toast.success({
 ## Usando Import Module
 
 ```js
-import { Toast } from "https://cdn.jsdelivr.net/npm/an-toastjs@0.0.5";
+import { Toast } from "https://cdn.jsdelivr.net/npm/an-toastjs@1.0.2";
 const toast = new Toast({ position: "top-right" });
 
 toast.success({

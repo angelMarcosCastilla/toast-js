@@ -17,8 +17,8 @@ dependencies:
     specifier: ^19.0.2
     version: 19.0.2(@types/react@19.0.1)
   an-toastjs:
-    specifier: ^0.0.7
-    version: 0.0.7
+    specifier: ^1.0.2
+    version: 1.0.2
   astro:
     specifier: ^5.0.4
     version: 5.0.4(typescript@5.7.2)
@@ -1365,8 +1365,8 @@ packages:
     hasBin: true
     dev: false
 
-  /an-toastjs@0.0.7:
-    resolution: {integrity: sha512-gNQMw/uHfvG2yi7kviEOrjYQpMh8FKKBc2zp6izwwHlpuPx10yaT2n5Ru5T9ot7UWn1q9Inu/lbG66jSqqRX+g==}
+  /an-toastjs@1.0.2:
+    resolution: {integrity: sha512-0Iee7SVVmibP0JsIqdtfSTH/o/lGNvfDN/jaR7llKP5SDLW4GGDjdG1JwnDrJ01wiaBPsmY0tZeY8K79SxgWfg==}
     dev: false
 
   /ansi-align@3.0.1:

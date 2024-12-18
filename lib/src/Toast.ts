@@ -1,4 +1,4 @@
-import "./style.css"
+import "./style.css";
 import { EXIT_AMIMATION, POSITIONS, prefix } from "./constants";
 import { closeIcon, Error, Info, Success, Warning } from "./icons";
 import { Config, IRenderToast, IToast, Position, Props } from "./type";
@@ -33,6 +33,10 @@ export class Toast implements IToast {
   }
 
   renderToast(option: IRenderToast) {
+    if (this.$container!?.children?.length > this.maxShow) {
+      return;
+    }
+
     const $toast = document.createElement("div");
     const $title = document.createElement("p");
     const $containerInfo = document.createElement("div");
@@ -67,10 +71,11 @@ export class Toast implements IToast {
 
     this.$container?.appendChild($toast);
 
-    const countCard = this.$container?.children.length || 0
-    
+    const countCard = this.$container?.children.length || 0;
+
     if (countCard > this.maxShow) {
-      this.$container?.children[0].remove();
+      const $toast = this.$container?.children[0] as HTMLDivElement;
+      this.autoClose($toast);
     }
 
     this.handleClose($toast);

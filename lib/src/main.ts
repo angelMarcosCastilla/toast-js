@@ -1,9 +1,9 @@
 import { Toast } from "./Toast";
 
 const toast = new Toast({
-  position: "top-center",
+  position: "bottom-center",
   maxShow: 4,
-  time: 6000
+  time: 10000
 });
 
 document.querySelector(".success")?.addEventListener("click", () => {

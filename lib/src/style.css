@@ -6,7 +6,7 @@
   --info: 196, 77%, 38%;
   --success: 103, 83%, 45%;
   --warning: 31, 95%, 57%;
-  --error: 354, 87%, 49%;
+  --error: 360 80% 62%;
   --background: 0, 0%, 100%;
   position: fixed;
   z-index: 9999;
@@ -80,8 +80,10 @@
   box-shadow: 0 2px 6px hsla(var(--shadow) / 0.1);
   & .title {
     font-size: 14px;
+    line-height: 14px;
     font-weight: 500;
-    color: hsl(var(--foreground));
+    margin-bottom: .2rem ;
+    color: hsl(var(--variant-color));
   }
 
   & .description {
@@ -121,7 +123,8 @@
     height: 24px;
     padding: 4px;
     border-radius: 3px;
-
+    display: grid;
+    place-content: center;
     & svg {
       width: 14px;
       height: 14px;
@@ -243,4 +246,8 @@
     opacity: 0;
     transform: translateY(-90%);
   }
+}
+
+.exit-for-max-show {
+  animation: exit-for-max-show 0.2s ease-in-out;
 }
