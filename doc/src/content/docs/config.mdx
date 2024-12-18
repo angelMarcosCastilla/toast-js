@@ -1,0 +1,27 @@
+---
+title: Positions
+description: Positions
+---
+
+import CodePretty from "@/components/CodePretty.astro";
+
+## Configuración
+
+1. Para configurar la librería, se debe realizar al momento de instanciar la clase Toast.
+
+<CodePretty
+  code={`const toast = new Toast({
+  position: "top-left",
+  maxShow: 2,
+  time: 4000,
+});`}
+  lang="js"
+/>
+
+## Opciones de configuración
+
+| Opciones | Tipo   | Descripción                                         | Valores                                        |
+| -------- | ------ | --------------------------------------------------- | ---------------------------------------------- |
+| position | string | Posición de la notificación.                        | top-left, top-right, bottom-left, bottom-right |
+| maxShow  | number | Cantidad máxima de notificaciones que se mostrarán. | number                                         |
+| time     | number | Tiempo de vida de la notificación, en milisegundos. | number                                         |

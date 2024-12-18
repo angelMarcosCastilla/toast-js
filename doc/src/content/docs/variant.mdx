@@ -3,43 +3,49 @@ title: Variantes
 description: Variantes
 ---
 
+import CodePretty from "@/components/CodePretty.astro";
+
 ## Variantes
 
 1. variante de exito
 
-```js
-toast.success({
+<CodePretty
+  code={`toast.success({
   title: "Success",
   description: "This is a success message",
-});
-```
+});`}
+  lang="js"
+/>
 
 2. variante de error
 
-```js
-toast.error({
+<CodePretty
+  code={`toast.error({
   title: "Error",
   description: "This is a error message",
-});
-```
+});`}
+  lang="js"
+/>
 
 3. variante de advertencia
 
-```js
-toast.warning({
+<CodePretty
+  code={`toast.warning({
   title: "Warning",
   description: "This is a warning message",
-});
-```
+});`}
+  lang="js"
+/>
 
 4. variante de información
 
-```js
-toast.info({
+<CodePretty
+  code={`toast.info({
   title: "Info",
   description: "This is a info message",
-});
-```
+});`}
+  lang="js"
+/>
 
 ## Opciones para variantes
 

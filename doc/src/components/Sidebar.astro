@@ -4,7 +4,8 @@ import { cn } from "@/lib/utils";
 const routes = [
   { name: "Instalación", href: "/doc/getting-started" },
   { name: "Configuración", href: "/doc/config" },
-  { name: "variantes", href: "/doc/variant" },
+  { name: "Variantes", href: "/doc/variant" },
+  { name: "Estilos", href: "/doc/styles" },
 ];
 
 const pathName = Astro.url.pathname;
@@ -18,7 +19,9 @@ const pathName = Astro.url.pathname;
           <a
             class={cn(
               "px-5 py-2 text-secondary-foreground block rounded ",
-              pathName.includes(route.href) ? "font-bold bg-accent": "hover:bg-muted/50"
+              pathName.includes(route.href)
+                ? "font-bold bg-accent"
+                : "hover:bg-muted/50"
             )}
             href={route.href}
           >
