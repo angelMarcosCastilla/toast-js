@@ -1,14 +1,22 @@
 ---
 import Sidebar from "@/components/Sidebar.astro";
 import Layout from "./Layout.astro";
-import { buttonVariants } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
+import { MenuIcon } from "lucide-react";
 ---
 
 <Layout>
   <header class="sticky top-0 z-10">
     <nav class="py-3 bg-white/80 backdrop-blur-lg">
-      <div class="max-w-[1200px] mx-auto px-4 flex items-center justify-between">
-        <a href="/" class="text-2xl font-bold">Toast</a>
+      <div
+        class="max-w-[1200px] mx-auto px-4 flex items-center justify-between"
+      >
+        <div class="flex items-center gap-x-2">
+          <Button id="menu-btn" size="icon" className="grid md:hidden" variant="ghost" aria-label="Menu">
+            <MenuIcon />
+          </Button>
+          <a href="/" class="text-2xl font-bold">Toast</a>
+        </div>
         <div>
           <a
             href="https://github.com/angelMarcosCastilla/toast-js"
@@ -22,9 +30,10 @@ import { buttonVariants } from "@/components/ui/button";
       </div>
     </nav>
   </header>
-  <main class="flex max-w-[1200px] mx-auto">
+  <main class="flex max-w-[1200px] mx-auto px-4">
     <div
-      class="w-64 py-4 border-r border-input h-[calc(100vh-56px)] sticky top-[56px]"
+      id="sidebar"
+      class=" hidden md:block fixed w-full pt-[80px] bg-background top-0 h-full border-r border-input md:w-64 md:h-[calc(100vh-120px)] md:sticky md:top-[60px] md:py-4"
     >
       <Sidebar />
     </div>
@@ -32,4 +41,15 @@ import { buttonVariants } from "@/components/ui/button";
       <slot />
     </div>
   </main>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const $sidebar = document.getElementById("sidebar") as HTMLElement;
+      const $menuButton = document.querySelector("#menu-btn") as HTMLElement;
+
+      $menuButton.addEventListener("click", () => {
+        $sidebar.classList.toggle("hidden");
+      });
+    });
+  </script>
 </Layout>

@@ -1,10 +1,14 @@
 ---
 interface Props {
   title?: string;
+  description?: string;
 }
 import "@/styles/global.css";
 
-const { title = "✅ Toast JS" } = Astro.props;
+const {
+  title = "✅ Toast JS",
+  description = "una librería de notificaciones sencilla y ligera",
+} = Astro.props;
 ---
 
 <!doctype html>
@@ -14,6 +18,7 @@ const { title = "✅ Toast JS" } = Astro.props;
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={description} />
     <title>{title}</title>
   </head>
   <body class="h-auto min-h-screen">
