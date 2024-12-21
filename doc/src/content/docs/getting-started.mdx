@@ -39,3 +39,18 @@ toast.success({
 title: "Success",
 description: "This is a success message",
 });`} lang="js"/>
+
+## Usando con CDN
+
+<CodePretty
+  code={`<script src="https://cdn.jsdelivr.net/npm/an-toastjs@1.0.2/dist/index.global.js"></script>
+<script>
+    const toast = new Toast.Toast({ position:"top-right"})
+    toast.success({
+        title: "Success",
+        description: "This is a success message",
+    });
+</script>
+`}
+  lang="html"
+/>

@@ -45,6 +45,53 @@ import { VERSION } from "@/constants";
 
         <section class="bg-white p-8 py-1 rounded-xl">
           <h2 class="text-2xl font-bold mb-4">Ejemplos</h2>
+          <p class="text-gray-600 mb-6">Lista de posicion del toast</p>
+          <div
+            class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mb-8"
+          >
+            <Button
+              variant="outline"
+              className="position"
+              data-position="top-right"
+            >
+              Top-right
+            </Button>
+            <Button
+              variant="outline"
+              className="position"
+              data-position="top-center"
+            >
+              Top-center
+            </Button>
+            <Button
+              variant="outline"
+              className="position"
+              data-position="top-left"
+            >
+              top-left
+            </Button>
+            <Button
+              variant="outline"
+              className="position"
+              data-position="bottom-right"
+            >
+              Bottom-right
+            </Button>
+            <Button
+              variant="outline"
+              className="position"
+              data-position="bottom-center"
+            >
+              Bottom-center
+            </Button>
+            <Button
+              variant="outline"
+              className="position"
+              data-position="bottom-left"
+            >
+              Bottom-left
+            </Button>
+          </div>
           <p class="text-gray-600 mb-6">
             Explora los diferentes tipos de notificaciones disponibles.
           </p>
@@ -62,18 +109,50 @@ import { VERSION } from "@/constants";
     </div>
   </div>
   <script>
-    import { Toast } from "an-toastjs";
-    const toast = new Toast({
-      position: "top-left",
+    import { Toast, type Position } from "an-toastjs";
+    let position: Position = "top-left";
+
+    let toast = new Toast({
+      position: position,
       maxShow: 2,
       time: 3000,
     });
 
+    function updatestylePosition() {
+      $$positions.forEach(($position) => {
+        $position.classList.remove("bg-primary", "text-white", "hover:bg-primary/95", "hover:text-white");
+      });
+      document
+        .querySelector(`[data-position="${position}"]`)
+        ?.classList.add("bg-primary", "text-white", "hover:bg-primary/95", "hover:text-white");
+    }
     const $default = document.querySelector("#default") as HTMLButtonElement;
     const $success = document.querySelector("#success") as HTMLButtonElement;
     const $error = document.querySelector("#error") as HTMLButtonElement;
     const $warning = document.querySelector("#warning") as HTMLButtonElement;
     const $info = document.querySelector("#info") as HTMLButtonElement;
+    const $$positions = document.querySelectorAll(".position");
+
+    $$positions.forEach(($position) => {
+      $position.addEventListener("click", (e) => {
+        const $toastContainer = document.querySelector(".an-toast-container");
+        $toastContainer?.remove();
+        if (e.target instanceof HTMLButtonElement) {
+          const positionToast = e.target.getAttribute("data-position") as Position;
+          position = positionToast
+          updatestylePosition()
+          toast = new Toast({
+            position: positionToast,
+            maxShow: 2,
+            time: 3000,
+          });
+          toast.default({
+            title: "Position",
+            description: `This is a ${positionToast} message`,
+          });
+        }
+      });
+    });
 
     $default.addEventListener("click", () => {
       toast.default({
@@ -108,5 +187,7 @@ import { VERSION } from "@/constants";
         description: "This is a info message",
       });
     });
+
+    updatestylePosition();
   </script>
 </Layout>
