@@ -1,193 +1,166 @@
 ---
-import CodePretty from "@/components/CodePretty.astro";
-import Layout from "../layouts/Layout.astro";
-import { Button, buttonVariants } from "@/components/ui/button";
-import { VERSION } from "@/constants";
+import CodePretty from '@/components/CodePretty.astro';
+import Layout from '../layouts/Layout.astro';
+import { Button, buttonVariants } from '@/components/ui/button';
+import { VERSION } from '@/constants';
 ---
 
 <Layout>
-  <div class="container mx-auto px-4 py-12">
-    <div class="mx-auto max-w-4xl space-y-12">
-      <header class="text-center space-y-6">
-        <div
-          class="inline-block px-3 py-1 text-sm font-semibold bg-blue-100 text-blue-800 rounded-full"
-        >
-          v{VERSION}
-        </div>
-        <h1 class="text-5xl font-bold tracking-tight sm:text-6xl">Toast</h1>
-        <p class="mx-auto max-w-2xl text-xl text-gray-600">
-          Una biblioteca ligera en VanillaJS para mostrar notificaciones rápidas
-          y elegantes en tu aplicación.
-        </p>
-        <div class="flex items-center justify-center gap-4 pt-4">
-          <a href="/doc/getting-started" class={buttonVariants()}>
-            Ver documentación
-          </a>
-          <a
-            href="https://github.com/angelMarcosCastilla/toast-js"
-            target="_blank"
-            rel="noopener noreferrer"
-            class={buttonVariants({ variant: "outline" })}
-          >
-            GitHub
-          </a>
-        </div>
-      </header>
+	<div class="container mx-auto px-4 py-12">
+		<div class="mx-auto max-w-4xl space-y-12">
+			<header class="text-center space-y-6">
+				<div
+					class="inline-block px-3 py-1 text-sm font-semibold bg-blue-100 text-blue-800 rounded-full"
+				>
+					v{VERSION}
+				</div>
+				<h1 class="text-5xl font-bold tracking-tight sm:text-6xl">Toast</h1>
+				<p class="mx-auto max-w-2xl text-xl text-gray-600">
+					Una biblioteca ligera en VanillaJS para mostrar notificaciones rápidas y elegantes en tu
+					aplicación.
+				</p>
+				<div class="flex items-center justify-center gap-4 pt-4">
+					<a href="/doc/getting-started" class={buttonVariants()}> Ver documentación </a>
+					<a
+						href="https://github.com/angelMarcosCastilla/toast-js"
+						target="_blank"
+						rel="noopener noreferrer"
+						class={buttonVariants({ variant: 'outline' })}
+					>
+						GitHub
+					</a>
+				</div>
+			</header>
 
-      <main class="space-y-8">
-        <section class="bg-white p-8 rounded-xl">
-          <h2 class="text-2xl font-bold mb-4">Instalación</h2>
-          <p class="text-gray-600 mb-4">
-            Comienza instalando el paquete usando npm, yarn o pnpm.
-          </p>
-          <CodePretty code={`npm install an-toastjs`} lang="bash" />
-        </section>
+			<main class="space-y-8">
+				<section class="bg-white p-8 rounded-xl">
+					<h2 class="text-2xl font-bold mb-4">Instalación</h2>
+					<p class="text-gray-600 mb-4">Comienza instalando el paquete usando npm, yarn o pnpm.</p>
+					<CodePretty code={`npm install an-toastjs`} lang="bash" />
+				</section>
 
-        <section class="bg-white p-8 py-1 rounded-xl">
-          <h2 class="text-2xl font-bold mb-4">Ejemplos</h2>
-          <p class="text-gray-600 mb-6">Lista de posicion del toast</p>
-          <div
-            class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mb-8"
-          >
-            <Button
-              variant="outline"
-              className="position"
-              data-position="top-right"
-            >
-              Top-right
-            </Button>
-            <Button
-              variant="outline"
-              className="position"
-              data-position="top-center"
-            >
-              Top-center
-            </Button>
-            <Button
-              variant="outline"
-              className="position"
-              data-position="top-left"
-            >
-              top-left
-            </Button>
-            <Button
-              variant="outline"
-              className="position"
-              data-position="bottom-right"
-            >
-              Bottom-right
-            </Button>
-            <Button
-              variant="outline"
-              className="position"
-              data-position="bottom-center"
-            >
-              Bottom-center
-            </Button>
-            <Button
-              variant="outline"
-              className="position"
-              data-position="bottom-left"
-            >
-              Bottom-left
-            </Button>
-          </div>
-          <p class="text-gray-600 mb-6">
-            Explora los diferentes tipos de notificaciones disponibles.
-          </p>
-          <div
-            class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mb-8"
-          >
-            <Button variant="outline" id="default"> Default </Button>
-            <Button variant="outline" id="success"> Success </Button>
-            <Button variant="outline" id="error"> Error </Button>
-            <Button variant="outline" id="warning"> Warning </Button>
-            <Button variant="outline" id="info"> Info </Button>
-          </div>
-        </section>
-      </main>
-    </div>
-  </div>
-  <script>
-    import { Toast, type Position } from "an-toastjs";
-    let position: Position = "top-left";
+				<section class="bg-white p-8 py-1 rounded-xl">
+					<h2 class="text-2xl font-bold mb-4">Ejemplos</h2>
+					<p class="text-gray-600 mb-6">Lista de posicion del toast</p>
+					<div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mb-8">
+						<Button variant="outline" className="position" data-position="top-right">
+							Top-right
+						</Button>
+						<Button variant="outline" className="position" data-position="top-center">
+							Top-center
+						</Button>
+						<Button variant="outline" className="position" data-position="top-left">
+							top-left
+						</Button>
+						<Button variant="outline" className="position" data-position="bottom-right">
+							Bottom-right
+						</Button>
+						<Button variant="outline" className="position" data-position="bottom-center">
+							Bottom-center
+						</Button>
+						<Button variant="outline" className="position" data-position="bottom-left">
+							Bottom-left
+						</Button>
+					</div>
+					<p class="text-gray-600 mb-6">
+						Explora los diferentes tipos de notificaciones disponibles.
+					</p>
+					<div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mb-8">
+						<Button variant="outline" id="default"> Default </Button>
+						<Button variant="outline" id="success"> Success </Button>
+						<Button variant="outline" id="error"> Error </Button>
+						<Button variant="outline" id="warning"> Warning </Button>
+						<Button variant="outline" id="info"> Info </Button>
+					</div>
+				</section>
+			</main>
+		</div>
+	</div>
+	<script>
+		import { Toast, type Position } from 'an-toastjs';
+		let position: Position = 'top-left';
 
-    let toast = new Toast({
-      position: position,
-      maxShow: 2,
-      time: 3000,
-    });
+		let toast = new Toast({
+			position: position,
+			maxShow: 2,
+			time: 3000,
+		});
 
-    function updatestylePosition() {
-      $$positions.forEach(($position) => {
-        $position.classList.remove("bg-primary", "text-white", "hover:bg-primary/95", "hover:text-white");
-      });
-      document
-        .querySelector(`[data-position="${position}"]`)
-        ?.classList.add("bg-primary", "text-white", "hover:bg-primary/95", "hover:text-white");
-    }
-    const $default = document.querySelector("#default") as HTMLButtonElement;
-    const $success = document.querySelector("#success") as HTMLButtonElement;
-    const $error = document.querySelector("#error") as HTMLButtonElement;
-    const $warning = document.querySelector("#warning") as HTMLButtonElement;
-    const $info = document.querySelector("#info") as HTMLButtonElement;
-    const $$positions = document.querySelectorAll(".position");
+		function updatestylePosition() {
+			$$positions.forEach(($position) => {
+				$position.classList.remove(
+					'bg-primary',
+					'text-white',
+					'hover:bg-primary/95',
+					'hover:text-white',
+				);
+			});
+			document
+				.querySelector(`[data-position="${position}"]`)
+				?.classList.add('bg-primary', 'text-white', 'hover:bg-primary/95', 'hover:text-white');
+		}
+		const $default = document.querySelector('#default') as HTMLButtonElement;
+		const $success = document.querySelector('#success') as HTMLButtonElement;
+		const $error = document.querySelector('#error') as HTMLButtonElement;
+		const $warning = document.querySelector('#warning') as HTMLButtonElement;
+		const $info = document.querySelector('#info') as HTMLButtonElement;
+		const $$positions = document.querySelectorAll('.position');
 
-    $$positions.forEach(($position) => {
-      $position.addEventListener("click", (e) => {
-        const $toastContainer = document.querySelector(".an-toast-container");
-        $toastContainer?.remove();
-        if (e.target instanceof HTMLButtonElement) {
-          const positionToast = e.target.getAttribute("data-position") as Position;
-          position = positionToast
-          updatestylePosition()
-          toast = new Toast({
-            position: positionToast,
-            maxShow: 2,
-            time: 3000,
-          });
-          toast.default({
-            title: "Position",
-            description: `This is a ${positionToast} message`,
-          });
-        }
-      });
-    });
+		$$positions.forEach(($position) => {
+			$position.addEventListener('click', (e) => {
+				const $toastContainer = document.querySelector('.an-toast-container');
+				$toastContainer?.remove();
+				if (e.target instanceof HTMLButtonElement) {
+					const positionToast = e.target.getAttribute('data-position') as Position;
+					position = positionToast;
+					updatestylePosition();
+					toast = new Toast({
+						position: positionToast,
+						maxShow: 2,
+						time: 3000,
+					});
+					toast.default({
+						title: 'Position',
+						description: `This is a ${positionToast} message`,
+					});
+				}
+			});
+		});
 
-    $default.addEventListener("click", () => {
-      toast.default({
-        title: "Default",
-        description: "This is a default message",
-      });
-    });
+		$default.addEventListener('click', () => {
+			toast.default({
+				title: 'Default',
+				description: 'This is a default message',
+			});
+		});
 
-    $success.addEventListener("click", () => {
-      toast.success({
-        title: "Success",
-        description: "This is a success message",
-      });
-    });
+		$success.addEventListener('click', () => {
+			toast.success({
+				title: 'Success',
+				description: 'This is a success message',
+			});
+		});
 
-    $error.addEventListener("click", () => {
-      toast.error({
-        title: "Error",
-        description: "This is a error message",
-      });
-    });
+		$error.addEventListener('click', () => {
+			toast.error({
+				title: 'Error',
+				description: 'This is a error message',
+			});
+		});
 
-    $warning.addEventListener("click", () => {
-      toast.warning({
-        title: "Warning",
-        description: "This is a warning message",
-      });
-    });
-    $info.addEventListener("click", () => {
-      toast.info({
-        title: "Info",
-        description: "This is a info message",
-      });
-    });
+		$warning.addEventListener('click', () => {
+			toast.warning({
+				title: 'Warning',
+				description: 'This is a warning message',
+			});
+		});
+		$info.addEventListener('click', () => {
+			toast.info({
+				title: 'Info',
+				description: 'This is a info message',
+			});
+		});
 
-    updatestylePosition();
-  </script>
+		updatestylePosition();
+	</script>
 </Layout>

@@ -1,7 +1,7 @@
 import { Toast } from "./Toast";
 
 const toast = new Toast({
-  position: "bottom-center",
+  position: "bottom-right",
   maxShow: 4,
   time: 10000
 });

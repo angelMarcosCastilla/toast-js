@@ -1,37 +1,35 @@
 ---
 interface Props {
-  title?: string;
-  description?: string;
+	title?: string;
+	description?: string;
 }
-import "@/styles/global.css";
+import '@/styles/global.css';
 
-const {
-  title = "✅ Toast JS",
-  description = "una librería de notificaciones sencilla y ligera",
-} = Astro.props;
+const { title = '✅ Toast JS', description = 'una librería de notificaciones sencilla y ligera' } =
+	Astro.props;
 ---
 
 <!doctype html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="generator" content={Astro.generator} />
-    <meta name="description" content={description} />
-    <title>{title}</title>
-  </head>
-  <body class="h-auto min-h-screen">
-    <slot />
-  </body>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<meta name="description" content={description} />
+		<title>{title}</title>
+	</head>
+	<body class="h-auto min-h-screen">
+		<slot />
+	</body>
 </html>
 
 <style>
-  html,
-  body {
-    margin: 0;
-    width: 100%;
-    height: 100%;
-    scrollbar-gutter: stable;
-  }
+	html,
+	body {
+		margin: 0;
+		width: 100%;
+		height: 100%;
+		scrollbar-gutter: stable;
+	}
 </style>

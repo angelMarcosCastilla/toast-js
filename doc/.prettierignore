@@ -1,0 +1,8 @@
+.vscode
+package-lock.json
+pnpm
+package.json
+pnpm-lock.yaml
+dist
+node_modules
+.astro

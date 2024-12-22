@@ -2,17 +2,18 @@
 title: Estilos
 description: Estilos
 ---
+
 import ExampleStyles from '../../components/ExampleStyles.tsx';
 import CodePretty from '@/components/CodePretty.astro';
 
 ## Estilos
 
-<ExampleStyles client:load  />
+<ExampleStyles client:load />
 
 Puedes modificar los colores del toast a partir de las variables css
 
-
-<CodePretty code={`.an-toast-container {
+<CodePretty
+	code={`.an-toast-container {
   --border: 240 5.9% 90%;
   --foreground: 240 10% 3.9%;
   --secondary-foreground: 240 3.8% 46.1%;
@@ -23,7 +24,9 @@ Puedes modificar los colores del toast a partir de las variables css
   --error: 360 80% 62%;
   --background: 0 0% 100%;
 }
-`} lang="css"/>
+`}
+	lang="css"
+/>
 Si deseas modificar el card de las distinas variantes lo puedes hacer de la siguiente manera
 
 <CodePretty code={`[data-variant="success"] {
@@ -32,16 +35,16 @@ Si deseas modificar el card de las distinas variantes lo puedes hacer de la sigu
 }
 
 [data-variant="error"] {
-  --error: 360 80% 22%;
-  background: linear-gradient(to right, #f4e3e6, white);
+--error: 360 80% 22%;
+background: linear-gradient(to right, #f4e3e6, white);
 }
 
 [data-variant="warning"] {
-  --warning: 31 95% 27%;
-  background: linear-gradient(to right, #f4f1e3, white);
+--warning: 31 95% 27%;
+background: linear-gradient(to right, #f4f1e3, white);
 }
 
 [data-variant="info"] {
-  --info: 196 77% 28%;
-  background: linear-gradient(to right, #e3e4f4, white);
+--info: 196 77% 28%;
+background: linear-gradient(to right, #e3e4f4, white);
 }`} lang="css"/>
