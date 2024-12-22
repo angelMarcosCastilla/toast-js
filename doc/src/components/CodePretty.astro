@@ -1,5 +1,6 @@
 ---
 import { Code } from "astro:components";
+import CopyButton from "./ui/CopyButton";
 interface Props {
   code: string;
   lang?: any;
@@ -7,6 +8,8 @@ interface Props {
 const { code, lang } = Astro.props;
 ---
 
-<div class="relative [&_pre]:px-5 [&_pre]:py-3 [&_pre]:rounded-md">
+<div class="relative [&_pre]:px-8 [&_pre]:py-5 [&_pre]:rounded-md">
+  <CopyButton client:visible text={code} className="absolute top-1 right-1 dark" />
   <Code code={code} lang={lang} theme="github-dark-high-contrast" />
 </div>
+
